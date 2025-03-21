@@ -1,0 +1,53 @@
+# /k8s/client-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: nireshprabu58/client-image:latest  # Correct Docker Hub path
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_IMPORTANT
+              valueFrom:
+                secretKeyRef:
+                  name: client-secrets
+                  key: VITE_IMPORTANT
+            - name: VITE_SOCKET_URL
+              valueFrom:
+                secretKeyRef:
+                  name: client-secrets
+                  key: VITE_SOCKET_URL
+            - name: VITE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: client-secrets
+                  key: VITE_SECRET_KEY
+            - name: VITE_GOOGLE_ANALYTICS
+              valueFrom:
+                secretKeyRef:
+                  name: client-secrets
+                  key: VITE_GOOGLE_ANALYTICS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: client
+  type: NodePort

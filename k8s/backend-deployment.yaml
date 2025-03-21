@@ -1,0 +1,47 @@
+# /k8s/backend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: nireshprabu58/server-image:latest  # Correct Docker Hub path
+          ports:
+            - containerPort: 4000
+          env:
+            - name: MongoDB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MongoDB_URL
+            - name: MAILTRAP_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MAILTRAP_TOKEN
+            - name: MAILTRAP_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: MAILTRAP_EMAIL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  ports:
+    - port: 4000
+      targetPort: 4000
+  selector:
+    app: backend
