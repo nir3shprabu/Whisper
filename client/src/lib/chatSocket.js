@@ -9,7 +9,7 @@ import {
 	NEW_EVENT_TYPING,
 	NEW_EVENT_RECEIVE_MESSAGE,
 	NEW_EVENT_SEND_FAILED,
-} from '../../../constants.json';
+} from '../../constants.json';
 
 /**
  *

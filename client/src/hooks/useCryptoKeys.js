@@ -1,4 +1,4 @@
-import { NEW_EVENT_REQUEST_PUBLIC_KEY } from '../../../constants.json';
+import { NEW_EVENT_REQUEST_PUBLIC_KEY } from '../../constants.json';
 import { convertArrayBufferToPem } from 'src/lib/chatHelper';
 import { socket } from 'src/lib/socketConnection';
 import { useState } from 'react';

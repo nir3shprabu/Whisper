@@ -12,7 +12,7 @@ import {
 	NEW_EVENT_JOINED,
 	NEW_EVENT_STOP_SEARCH,
 	NEW_EVENT_STOP_SEARCH_SUCCESS,
-} from '../../../constants.json';
+} from '../../constants.json';
 import { useAuth } from 'src/context/AuthContext';
 
 const stoppingSearchLoadingText = <p>Stopping the search</p>;

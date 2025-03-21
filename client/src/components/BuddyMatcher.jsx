@@ -5,7 +5,7 @@ import {
 	NEW_EVENT_INACTIVE,
 	NEW_EVENT_JOIN,
 	NEW_EVENT_JOINED,
-} from '../../../constants.json';
+} from '../../constants.json';
 import { connectWithId, socket } from 'src/lib/socketConnection';
 import { useCallback, useEffect, useRef, useState } from 'react';
 

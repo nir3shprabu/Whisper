@@ -1,4 +1,4 @@
-const { NEW_EVENT_READ_MESSAGE } = require('../../constants.json');
+const { NEW_EVENT_READ_MESSAGE } = require('../constants.json');
 const { getActiveUser, seenMessage } = require('../utils/lib');
 
 module.exports = (socket) => {

@@ -12,7 +12,7 @@ import { socket } from 'src/lib/socketConnection';
 
 // Lib
 import { useApp } from 'src/context/AppContext';
-import { NEW_EVENT_LOGOUT } from '../../../constants.json';
+import { NEW_EVENT_LOGOUT } from '../../constants.json';
 
 const linkStyle = `h-full w-full flex items-center justify-center hover:bg-primary rounded-[15px] md:max-h-[60px] md:h-[60px] md:min-h-[60px] `;
 const activeStyle = linkStyle + 'bg-primary';

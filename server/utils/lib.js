@@ -8,7 +8,7 @@ const User = require('../models/UserModel');
 const Message = require('../models/MessageModel');
 const { generateObjectId } = require('./helper');
 
-const { FIFTEEN_MINUTES } = require('../../constants.json');
+const { FIFTEEN_MINUTES } = require('../constants.json');
 
 
 /**

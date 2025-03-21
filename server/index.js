@@ -38,6 +38,16 @@ mongoose
 const UserRouter = require('./controllers/userController');
 const CodeRouter = require('./controllers/codeController');
 
+// Serve base URL
+app.get('/', (req, res) => {
+  res.send('Server is running successfully!');
+});
+
+app.use(express.json());
+app.use(cors());
+app.use(UserRouter);
+app.use('/code', CodeRouter);
+
 // Socket Event Handlers
 const JoinHandler = require('./sockets/join');
 const SendMessageHandler = require('./sockets/sendMessage');
@@ -51,21 +61,13 @@ const stopSearch = require('./sockets/stopSearch');
 const onlineStatus = require('./sockets/onlineStatus');
 const requestPublicKeyHandler = require('./sockets/requestPublicKey');
 
-app.use(express.json());
-app.use(cors());
-app.use(UserRouter);
-app.use('/code', CodeRouter);
-
-// triggers when a user is connected to a socket
+// Socket connection handling
 io.on('connection', (socket) => {
   const chatId = socket.handshake.query.chatId;
   if (chatId) {
     socket.join(chatId);
   }
-  /**
-   * This event is emitted once the user clicks on the Start button or
-   * navigates to the /founduser route
-   */
+
   JoinHandler(io, socket);
   SendMessageHandler(socket);
   EditMessageHandler(socket);

@@ -5,6 +5,9 @@ import { resolve } from 'path';
 
 export default defineConfig({
 	plugins: [react(), eslint()],
+	server: {
+		host: '0.0.0.0'
+	},
 	resolve: {
 		alias: {
 			src: resolve(__dirname, './src'),
