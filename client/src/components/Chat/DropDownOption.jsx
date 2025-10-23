@@ -9,7 +9,7 @@ import { useChat } from 'src/context/ChatContext';
 import useChatUtils from 'src/lib/chatSocket';
 import useCryptoKeys from 'src/hooks/useCryptoKeys';
 
-import { FIFTEEN_MINUTES } from '../../../../constants.json';
+import { FIFTEEN_MINUTES } from '../../../constants.json';
 
 const DropDownOptions = ({ id, isSender, inputRef, cancelEdit, setEditing, setReplyId }) => {
 	const { app } = useApp();

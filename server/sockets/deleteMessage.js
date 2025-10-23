@@ -1,4 +1,4 @@
-const { NEW_EVENT_DELETE_MESSAGE } = require('../../constants.json');
+const { NEW_EVENT_DELETE_MESSAGE } = require('../constants.json');
 const { getActiveUser, removeMessage, isMessageEditableOrDeletable } = require('../utils/lib');
 
 module.exports = (socket) => {

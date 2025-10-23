@@ -1,4 +1,4 @@
-const { NEW_EVENT_REQUEST_PUBLIC_KEY } = require('../../constants.json');
+const { NEW_EVENT_REQUEST_PUBLIC_KEY } = require('../constants.json');
 
 // This is used to take public key and private from sender and broadcast it to all receivers
 module.exports = (io, socket) => {

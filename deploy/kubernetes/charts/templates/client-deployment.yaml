@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper-frontend
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: whisper-frontend
+  template:
+    metadata:
+      labels:
+        app: whisper-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.frontend.image }}:{{ .Values.frontend.tag }}"
+        ports:
+        - containerPort: {{ .Values.frontend.port }}
+        envFrom:
+        - configMapRef:
+            name: whisper-configmap
+        - secretRef:
+            name: whisper-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisper-frontend
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: whisper-frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: {{ .Values.frontend.port }}
+  type: ClusterIP

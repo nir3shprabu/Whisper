@@ -2,7 +2,7 @@ const {
   NEW_EVENT_CLOSE,
   NEW_EVENT_INACTIVE,
   NEW_EVENT_CLOSED,
-} = require('../../constants.json');
+} = require('../constants.json');
 const { getActiveUser, chatExists, closeChat } = require('../utils/lib');
 
 module.exports = (socket) => {

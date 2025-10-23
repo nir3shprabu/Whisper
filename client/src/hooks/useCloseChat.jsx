@@ -1,4 +1,4 @@
-import { NEW_EVENT_CLOSE, NEW_EVENT_JOIN } from '../../../constants.json';
+import { NEW_EVENT_CLOSE, NEW_EVENT_JOIN } from '../../constants.json';
 import { connectWithId, socket } from 'src/lib/socketConnection';
 import { useCallback, useRef, useState } from 'react';
 

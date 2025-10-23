@@ -1,0 +1,40 @@
+namespace: whisper-namespace
+
+mongodb:
+  image: mongo
+  tag: "8.0"
+  rootUsername: whisper-user
+  rootPassword: whisper123
+  pvcName: mongodb-pvc
+  storage: 10Gi
+
+backend:
+  image: nireshtrident/whisper-backend
+  tag: latest
+  port: 4000
+  replicas: 1
+
+frontend:
+  image: nireshtrident/whisper-frontend
+  tag: latest
+  port: 80
+  replicas: 1
+
+configmap:
+  VITE_IMPORTANT: test-d4a1c830-a65f-4c43-a871-abafcc31066d
+  VITE_SOCKET_URL: http://whisper-backend.whisper-namespace.svc.cluster.local:4000
+  VITE_GA_MEASUREMENT_ID: ""
+  VITE_GOOGLE_ANALYTICS: "123"
+
+secret:
+  VITE_SECRET_KEY: whisper123
+  MongoDB_URL: mongodb://whisper-user:whisper123@mongodb.whisper-namespace.svc.cluster.local:27017/
+  MAILTRAP_TOKEN: "<mailtraptoken>"
+  MAILTRAP_EMAIL: mailtrap@demomailtrap.com
+
+ingress:
+  # enabled: true
+  host: check.globalxair.com
+  certificateArn: arn:aws:acm:us-east-1:280717638710:certificate/3162fab4-d3b4-4dee-8c2f-4a1a0a6a77b9
+  albGroupName: whisper-alb-group
+  albName: whisper-alb

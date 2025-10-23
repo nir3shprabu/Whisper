@@ -5,7 +5,7 @@ import {
 	NEW_EVENT_EDIT_MESSAGE,
 	NEW_EVENT_ONLINE_STATUS,
 	NEW_EVENT_RECEIVE_MESSAGE,
-} from '../../../constants.json';
+} from '../../constants.json';
 import { createClassesFromArray, isExplicitDisconnection } from 'src/lib/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useKeyPress, { ShortcutFlags } from 'src/hooks/useKeyPress';

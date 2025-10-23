@@ -7,7 +7,7 @@ import {
 	NEW_EVENT_INACTIVE,
 	NEW_EVENT_JOIN,
 	NEW_EVENT_JOINED,
-} from '../../../constants.json';
+} from '../../constants.json';
 import { connectWithId } from './socketConnection';
 import { createBrowserNotification } from './browserNotification';
 import { isExplicitDisconnection } from './utils';

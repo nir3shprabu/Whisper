@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper-backend
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: whisper-backend
+  template:
+    metadata:
+      labels:
+        app: whisper-backend
+    spec:
+      containers:
+      - name: backend
+        image: "{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
+        ports:
+        - containerPort: {{ .Values.backend.port }}
+        envFrom:
+        - configMapRef:
+            name: whisper-configmap
+        - secretRef:
+            name: whisper-secrets
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisper-backend
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: whisper-backend
+  ports:
+  - protocol: TCP
+    port: {{ .Values.backend.port }}
+    targetPort: {{ .Values.backend.port }}
+  type: ClusterIP
